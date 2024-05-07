@@ -1,13 +1,22 @@
-const stoogeSort = (arr, i = 0, j = arr.length - 1) => {
-  if (arr[i] > arr[j]) {
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there are elements remaining
+  while (currentIndex !== 0) {
+    // Pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // Swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
-  if (i + 1 >= j) {
-    return arr;
-  }
-  const t = Math.floor((j - i + 1) / 3);
-  stoogeSort(arr, i, j - t);
-  stoogeSort(arr, i + t, j);
-  stoogeSort(arr, i, j - t);
-  return arr;
-};
+
+  return array;
+}
+
+const shuffledDeck = shuffle([1, 2, 3, 4, 5]);
+console.log(shuffledDeck);
